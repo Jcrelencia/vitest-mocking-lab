@@ -1,6 +1,10 @@
 import { getName } from "./user.js";
 
 export async function greet() {
-  const name = await getName();
-  return `Hello, ${name}!`;
-}
+     try {
+       const name = await getName();
+       return `Hello, ${name}!`;
+     } catch (err) {
+       return "Error 500";
+     }
+   }

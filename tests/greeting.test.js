@@ -9,10 +9,17 @@ vi.mock("@/user.js", () => ({
 it("greets the user by name", async () => {
   // Arrange
   getName.mockResolvedValue("User");
-
   // Act
   const result = await greet();
-
   // Assert
   expect(result).toBe("Hello, User!");
+});
+
+it("handles a 500", async () => {
+  // Arrange
+  getName.mockRejectedValue(new Error("500"));
+  // Act
+  const result = await greet();
+  // Assert
+  expect(result).toBe("Error 500");
 });
